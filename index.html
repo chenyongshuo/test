@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国人民解放军</title>
+    <style>
+        /* 公共样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        /* 页眉样式 */
+        header {
+            background-color: #004f79;
+            /* 蓝色背景 */
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* 添加阴影效果 */
+            position: fixed;
+            /* 固定页眉 */
+            top: 0;
+            /* 固定在页面顶部 */
+            left: 0;
+            /* 固定在页面左侧 */
+            width: 100%;
+            /* 宽度为100%，让页眉横跨整个页面 */
+            z-index: 1000;
+            /* 确保页眉在所有内容之上 */
+        }
+
+        /* Logo样式 */
+        header .logo img {
+            width: 140px;
+            height: auto;
+
+            margin-left: 50px;
+            /* 右移Logo */
+        }
+
+        /* 导航栏样式 */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            /* 居中对齐导航栏 */
+            flex-grow: 1;
+            /* 让导航栏占据剩余空间 */
+        }
+
+        .navigation ul {
+            display: flex;
+            align-items: center;
+        }
+
+        .navigation ul li {
+            margin: 0 20px;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .navigation a:hover {
+            color: #ff6600;
+        }
+
+        /* 登录和注册按钮样式 */
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-buttons a {
+            background: #ff6600;
+            color: white;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .auth-buttons a:hover {
+            background: #e55b00;
+        }
+
+        /* 轮播图样式 */
+        .carousel {
+            height: 900px;
+            position: relative;
+            max-width: 100%;
+            margin-top: 150px;
+            overflow: hidden;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 900px;
+            object-fit: cover;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel img.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* 简介模块样式 */
+        .intro {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f4f4f4;
+        }
+
+        .intro h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* 最新新闻样式 */
+        .latest-news {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+            background: #e9e9e9;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .news-list {
+            width: 60%;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+        }
+
+        .news-item {
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        .news-item h3 {
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .news-item p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .news-item a {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 15px;
+            margin-top: 5px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+
+        .news-item a:hover {
+            background: #0056b3;
+        }
+
+        .news-details {
+            width: 35%;
+            padding: 15px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        /* 新闻详情iframe样式 */
+        .news-details iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #333;
+            color: #fff;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="./images/军旗.jpg" alt="军旗">
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="Composition.html">力量组成</a></li>
+                <li><a href="five_Theater.html">五大战区</a></li>
+                <li><a href="four_general.html">四总部</a></li>
+                <li><a href="heroic.html">英雄事迹</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html">登录</a>
+            <a href="register.html">注册</a>
+        </div>
+    </header>
+
+    <div class="carousel">
+        <!-- 轮播图的容器 -->
+        <img src="./images/lunbotu01.jpg" alt="轮播图1" class="carousel-slide active">
+        <img src="./images/lunbotu02.jpg" alt="轮播图2" class="carousel-slide">
+        <img src="./images/lunbotu03.jpg" alt="轮播图3" class="carousel-slide">
+        <img src="./images/lunbotu04.jpg" alt="轮播图4" class="carousel-slide">
+        <img src="./images/lunbotu05.jpg" alt="轮播图5" class="carousel-slide">
+        <img src="./images/lunbotu06.jpg" alt="轮播图6" class="carousel-slide">
+    </div>
+
+    <main>
+        <section class="intro">
+            <h2>欢迎来到中国人民解放军</h2>
+            <p>听党指挥、能打胜仗、作风优良</p>
+        </section>
+
+        <section class="latest-news">
+            <h2>中国<br>人民<br>解放军<br><br>主要军种</h2>
+            <div class="news-list">
+                <!-- 新闻条目1 -->
+                <!-- 新闻条目1 -->
+                <div class="news-item" data-url="news1.html">
+                    <h3 class="news-title">中国人民解放军陆军</h3>
+                    <p class="news-summary">
+                        中国人民解放军陆军诞生于1927年8月1日，是中国人民解放军的主体力量，共有13个集团军的机动作战部队，分布于五大战区，是现世界上兵力最为庞大的陆军。</p>
+                    <a href="javascript:void(0);" class="read-more" onclick="showDetails('news1.html')">阅读更多</a>
+                </div>
+                <!-- 新闻条目2 -->
+                <div class="news-item" data-url="news2.html">
+                    <h3 class="news-title">中国人民解放军海军</h3>
+                    <p class="news-summary">
+                        中国人民解放军海军（英文：Navy of the CPLA ，或People's Liberation Army Navy，缩写：PLAN 或PLA Navy
+                        ），是中华人民共和国的海上武装力量，是中国人民解放军的一个军种。</p>
+                    <a href="javascript:void(0);" class="read-more" onclick="showDetails('news2.html')">阅读更多</a>
+                </div>
+                <!-- 新闻条目3 -->
+                <div class="news-item" data-url="news3.html">
+                    <h3 class="news-title">中国人民解放军空军</h3>
+                    <p class="news-summary">
+                        中国人民解放军空军（Air Force of the CPLA），于1949年11月11日正式成立，是中国人民解放军的空中武装力量，是中国人民解放军现役部队战略军种之一。</p>
+                    <a href="javascript:void(0);" class="read-more" onclick="showDetails('news3.html')">阅读更多</a>
+                </div>
+                <!-- 新闻条目4 -->
+                <div class="news-item" data-url="news4.html">
+                    <h3 class="news-title">中国人民解放军火箭军</h3>
+                    <p class="news-summary">
+                        中国人民解放军火箭军（PLA Rocket Force），简称火箭军，别名战略导弹部队，成立于2015年12月31日，前身为第二炮兵</p>
+                    <a href="javascript:void(0);" class="read-more" onclick="showDetails('news4.html')">阅读更多</a>
+                </div>
+                <!-- 新闻条目5 -->
+                <div class="news-item" data-url="news5.html">
+                    <h3 class="news-title">中国人民解放军联勤保障部队</h3>
+                    <p class="news-summary">
+                        中国人民解放军联勤保障部队，成立于2016年9月13日，由中央军事委员会直属，总部机关位于武汉，以武汉联勤保障基地为建制领导，下属无锡、桂林、西宁、沈阳、郑州5个联勤保障中心。</p>
+                    <a href="javascript:void(0);" class="read-more" onclick="showDetails('news5.html')">阅读更多</a>
+                </div>
+            </div>
+
+            <!-- 新闻详情区域 -->
+            <div class="news-details" id="news-details">
+                <!-- 新闻详细内容将在这里显示 -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 陈坤硕 版权所有. 版权所有.</p>
+    </footer>
+
+    <script>
+        // 轮播图功能
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function changeSlide() {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % totalSlides;
+            slides[currentIndex].classList.add('active');
+        }
+
+        setInterval(changeSlide, 5000); // 每5秒切换一次图片
+
+        function showDetails(newsUrl) {
+            document.getElementById('news-details').innerHTML = `<iframe src="${newsUrl}" frameborder="0"></iframe>`;
+        }
+    </script>
+</body>
+
+</html>
